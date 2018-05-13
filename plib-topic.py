@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/d/ProgramData/Anaconda2/python
 # -*- coding: utf-8 -*-
 """
     Pdf Library command line utilities
@@ -11,6 +11,7 @@
 # =============================================================================    
 #  Version Information
 #  1.x.x    Initial ideas
+#  1.1.x    Added the add subcommant
 #  
 # 
 #   Dependencies
@@ -24,8 +25,8 @@
 # imported code from plibCommands
 PROG_DESCRIPTION = "PDF Library topic database utility"
 CMD_NAME = 'plib-topic'
-VERSION_NO = '1.0.0'         # increment last digit with minor changes
-DATE = 5*'\t'+'rgr17sep17'   # see tinyUrl_Revisions.txt for notes
+VERSION_NO = '1.0.1'         # increment last digit with minor changes
+DATE = 5*'\t'+'rgr21oct17'   # see tinyUrl_Revisions.txt for notes
 
 import argparse, sys
 from os import path
@@ -64,8 +65,15 @@ parser_add = subparsers.add_parser('add',
 parser_add.set_defaults(func=doAdd)
 parser_add.add_argument('cat', type=str, help='the category to be added')
 parser_add.add_argument('key', type=str, help='key words for the category')
-parser_add.add_argument('desc', type=str, nargs='*',
-        help='text for the decriptoin of this category in the database')
+parser_add.add_argument('desc', type=str,
+        help='text for the decription of this category in the database')
+parser_add.add_argument('more', type=str, nargs='*',
+        help='all added to the desc')
+parser_add.add_argument('-F', '--force', action='store_true',
+        help='Force a new category, overwtirring the old one')
+
+parser_add.add_argument('-s', '--see-also', action='append', default=[],
+        help='Include other categories in a list')
 # add --see-also as an optiona item
 from plibCommands import doFind
 parser_find = subparsers.add_parser('find', 

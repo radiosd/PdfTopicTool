@@ -27,7 +27,7 @@ class PdfLibraryInterface():
         if self.args.test or self.db is None:
             logger.info('no changes saved')
         else:
-            self.tdb.save()
+            self.db.save()
         
 #============================================================================
 #   The FindAdex database is a list of CsvItem objects with 
@@ -35,7 +35,8 @@ class PdfLibraryInterface():
 #   
 #============================================================================
     def hasCategory(self, key):
-        return self.tdb.data.hasCategory(key)
+        """Check that a topic category exists"""
+        return self.db.hasCategory(key)
 
     def search(self, fields):
         """use regex to search the fields prescribed by the various args"""

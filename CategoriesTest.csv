@@ -10,6 +10,7 @@ A401,Amplifier Design,General topics
 A402,Antennas,General theory
 A403,All Pass Networks,Theory and design,P404
 A404,ZX89,b l a h   b l a h
+A405,ZX89,blah blah and blah
 B401,Bipolar Circuits,Not sure this is a useful any more
 B402,BCD Synthesis,A special direct synthesis idea from AIL Tech,S401,S402
 B403,Basics,No idea what this is
@@ -21,4 +22,6 @@ C701,Anlotech,Indirect (not a specific project) reference material relevant to c
 _700,RSD,All things to do with Radio System Design
 P801,Power Amplifiers,More substantive references rather than individual designs
 _800,Publications,"Whole magazines, books or chapters/extracts from books"
+A901,Topic,blah blah
+A902,new3,all one paramter
 _900,Various,Other specific topics as well as general interest 

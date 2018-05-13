@@ -5,6 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
+*.swp
 
 # Distribution / packaging
 .Python
@@ -99,3 +100,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# database backup
+*.bak
