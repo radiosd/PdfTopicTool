@@ -11,7 +11,9 @@
 # =============================================================================    
 #  Version Information
 #  1.x.x    Initial ideas
-#  
+#  1.2.0    added -p facility to show the database path informaion
+#  1.2.1    Minor corrections and folder structure changes to support deployment
+#           using setup.py
 # 
 #   Dependencies
 #   local   
@@ -24,8 +26,8 @@
 # imported code from plibCommands
 PROG_DESCRIPTION = "PDF Library topic database utility"
 CMD_NAME = 'plib-topic'
-VERSION_NO = '1.0.0'         # increment last digit with minor changes
-DATE = 5*'\t'+'rgr17sep17'   # see tinyUrl_Revisions.txt for notes
+VERSION_NO = '1.2.1'         # increment last digit with minor changes
+DATE = 5*'\t'+'rgr13may18'   # see plib_Revisions.txt for notes
 
 import argparse, sys
 from os import path
@@ -56,8 +58,11 @@ parser.add_argument('-t', '--test',
 parser.add_argument('-V', '--Verbose', 
         help='a way to get more help', action='store_true')
 
+from rgrPdfLibrary.plibCommands import doShowPaths
+parser.add_argument('-p', '--paths', 
+        help='show paths to topic and paper databases', action='store_true')        #default=doShowPaths)
 # use sub-parsers for each of the sub commands  
-from plibCommands import doAdd                # the add command
+from rgrPdfLibrary.plibCommands import doAdd           # the add command
 # 2 required positional parameters
 parser_add = subparsers.add_parser('add', 
         help='add a category to the database')
@@ -67,7 +72,7 @@ parser_add.add_argument('key', type=str, help='key words for the category')
 parser_add.add_argument('desc', type=str, nargs='*',
         help='text for the decriptoin of this category in the database')
 # add --see-also as an optiona item
-from plibCommands import doFind
+from rgrPdfLibrary.plibCommands import doFind
 parser_find = subparsers.add_parser('find', 
         help='find a target string in the database - default=description')
 parser_find.set_defaults(func=doFind)
@@ -92,7 +97,7 @@ parser_find.add_argument('-k', '--key', action='store_true',
 parser_find.add_argument('-K', '--Key-word', action='store_true',
         help='search the key words field only')
 
-from plibCommands import doEdit
+from rgrPdfLibrary.plibCommands import doEdit
 parser_edit = subparsers.add_parser('edit',
         help='edit an exisitng item in the database')
 parser_edit.add_argument('turl', type=str, 
@@ -120,6 +125,11 @@ if __name__=='__main__':
     logger.level = logging.INFO
     logger.debug('\tstarting: '+path.basename(__file__)+'\t==='
                  + strftime('%a-%d %H:%M') + ' ===')
+    if len(sys.argv)>1 and sys.argv[1]=='-p':
+        # cannot see how to handle this as optional in parse_args()
+        # so a more basic approach
+        doShowPaths()
+        sys.exit(0)              
     args = parser.parse_args()  # this will show help for -h
     if args.Verbose:
         print 'args:', args

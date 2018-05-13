@@ -6,11 +6,11 @@
 """
 import logging
 logger = logging.getLogger(__name__)
-logger.level = logging.DEBUG             # change for import level
+logger.level = logging.INFO             # change for import level
 
 # csv data basea are on the NAS drive, access is different on each platform
 TOPIC_DB = 'Categories.csv'
-PAPER_DC = 'MasterCatalogue.csv'
+PAPER_DB = 'MasterCatalogue.csv'
 import platform
 if platform.system()=='Darwin':
     PATH_DB = '/Volumes/richard/NAS/PdfLibrary'
@@ -73,12 +73,17 @@ def doFind(args):
         for a in results:
             p_lib.display(a)
     if args.Verbose:
-        print('{:<3n}{:s}'.format(len(results),'found'))
+        print('{:<3n}{:s} found'.format(len(results)))
     # return results
     
 def doEdit(args):
     logger.debug('\tperform Edit sub-command')
-   
+
+def doShowPaths():
+    """print the full path and filename of the databases used"""
+    print('Topics: {:s}'.format(path.join(PATH_DB, TOPIC_DB)))
+    print('Papers: {:s}'.format(path.join(PATH_DB, PAPER_DB)))
+          
 
 if __name__=='__main__':  
     from os import sys
