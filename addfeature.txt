@@ -1,0 +1,44 @@
+
+Purpose of this branch
+======================
+This branch is to include the add mode into the utility.
+
+
+Primary change is in the doAdd method in plibCommands.py.  To trap error from rgrCsvData/findAdex.py, that module was altered to generate an exception for detected errors.
+
+Progress notes on this branch
+
+=============================
+
+
+Add works with the test csv file.
+*) check that a new entry works. (yes)
+*) then try errors 
+   Not enough params (yes)
+   lower case cat (yes)
+   invalid cat (yes)
+   using "key words" for >1 key word (yes)
+   Avoid duplicate entries (yes)
+   Any See Also items must exist as well (yes)
+
+*) Check that Xn00 adds the next new topic value. Yes
+*) If there is an error the DB is still backed up and saved. (resolved)
+*) Having no See also should be simpler in the code 
+   - csvDataBase.addEntry() should work with a zero length *args (fixed)
+
+Merge Check List
+================
+Prior to merge and remove
+
+1) Reset the logging levels in all the modules
+   Remove any superfuouis print statements
+2) Update the version info in plib-topic.py
+3) Reset paths to csv files in plibCommands.py
+
+Other Issues
+============
+Loading of CSV data
+1) cannot handle a blank line (?? ok in findAdex.py)
+2) Saving seems to not be in the alph numberic order I expected.
+   An entry for A901 comes between _800 and _900?
+   Maybe correct afer all!
