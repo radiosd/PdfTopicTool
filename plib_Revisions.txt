@@ -1,0 +1,8 @@
+Revision History for plib-xxx files
+===================================
+
+1.x.x   Initial commit
+
+
+1.2.0   Some confusion over using git, so may be out of sequence
+	Added the -p flag ro show the paths to the databases ues
