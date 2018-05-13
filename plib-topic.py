@@ -24,8 +24,8 @@
 # imported code from plibCommands
 PROG_DESCRIPTION = "PDF Library topic database utility"
 CMD_NAME = 'plib-topic'
-VERSION_NO = '1.0.0'         # increment last digit with minor changes
-DATE = 5*'\t'+'rgr17sep17'   # see tinyUrl_Revisions.txt for notes
+VERSION_NO = '1.2.0'         # increment last digit with minor changes
+DATE = 5*'\t'+'rgr13may18'   # see plib_Revisions.txt for notes
 
 import argparse, sys
 from os import path
@@ -56,6 +56,9 @@ parser.add_argument('-t', '--test',
 parser.add_argument('-V', '--Verbose', 
         help='a way to get more help', action='store_true')
 
+from plibCommands import doShowPaths
+parser.add_argument('-p', '--paths', 
+        help='show paths to topic and paper databases', action='store_true')        #default=doShowPaths)
 # use sub-parsers for each of the sub commands  
 from plibCommands import doAdd                # the add command
 # 2 required positional parameters
@@ -120,6 +123,10 @@ if __name__=='__main__':
     logger.level = logging.INFO
     logger.debug('\tstarting: '+path.basename(__file__)+'\t==='
                  + strftime('%a-%d %H:%M') + ' ===')
+    if len(sys.argv)>1 and sys.argv[1]=='-p':
+        # cannot see how to handle this as optional in parse_args()
+        doShowPaths()
+        sys.exit(0)              
     args = parser.parse_args()  # this will show help for -h
     if args.Verbose:
         print 'args:', args
