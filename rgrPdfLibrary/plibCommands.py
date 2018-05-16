@@ -73,7 +73,7 @@ def doFind(args):
         for a in results:
             p_lib.display(a)
     if args.Verbose:
-        print('{:<3n}{:s}'.format(len(results),'found'))
+        print('{:<3n}{:s} found'.format(len(results)))
     # return results
     
 def doEdit(args):
